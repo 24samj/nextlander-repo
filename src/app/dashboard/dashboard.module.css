@@ -12,28 +12,77 @@
     align-items: center;
     justify-content: space-between;
     padding: 25px;
-    /* background-color: red; */
+}
+
+.dashboardNavbarContainer > h1:hover {
+    text-shadow: 0 0 3px white;
 }
 
 .navbarButtonsContainer {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     gap: 10px;
 }
 
 .dashboardDataContainer {
     height: 60%;
-    display: flex;
-    /* justify-content: center; */
-    gap: 25px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    width: 100%;
+    gap: 30px;
+    overflow-y: auto;
+    overflow-x: hidden;
     padding: 25px;
+    border-bottom: 1px solid;
+    border-image: linear-gradient(to right, transparent, grey, transparent) 1;
+}
+
+.dashboardDataContainer::-webkit-scrollbar {
+    width: 3px;
+}
+
+.dashboardDataContainer::-webkit-scrollbar-thumb {
+    background-color: grey;
+}
+
+.landingPageDisplayContainer {
+    display: flex;
+    flex-direction: column;
+    height: 170px;
+    gap: 10px;
+    text-align: center;
+}
+
+.landingPageDisplayFooter {
+    display: flex;
+    justify-content: space-between;
+}
+
+.landingPageDisplayFooter > h4 {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.landingPageDisplayFooter > h4:nth-child(1) {
+    text-align: left;
+}
+
+.landingPageDisplayFooter > h4:nth-child(2) {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    text-align: right;
 }
 
 .landingPageCardContainer {
-    height: 100px;
-    width: 200px;
+    height: 100%;
+    width: 100%;
     border: 2px solid grey;
-    border-radius: 15px;
+    border-radius: 5px;
     overflow: hidden;
     font-size: 12px;
     display: flex;
@@ -46,9 +95,6 @@
 .landingPageCardContainer .controlsOverlay {
     padding: 0;
 }
-/* .landingPageCardContainer > div:nth-last-of-type() {
-    padding: 0;
-} */
 
 .landingPageCardHeader {
     font-size: 12px;
@@ -98,6 +144,7 @@
 .addPageButton,
 .logoutButton {
     height: max-content;
+    width: max-content;
     padding: 10px 25px;
     border-radius: 5px;
     background-color: rgba(0, 0, 255, 0.5);
@@ -132,47 +179,60 @@
 .dashboardAnalyticsContainer {
     height: 30%;
     width: 100%;
-    /* border-top: 3px solid grey; */
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow-y: hidden;
-    gap: 10px;
+}
+.dashboardAnalyticsContainer > h3 {
+    margin: 10px 0px;
 }
 
 .tableContainer {
-    max-height: 80%;
-    width: 50%;
+    max-height: 75%;
+    width: 20%;
     border: 1px solid grey;
 
     border-radius: 10px;
-    overflow-y: scroll;
+    overflow-y: hidden;
     display: flex;
     flex-direction: column;
 }
 
-/* Hide scrollbar for Webkit browsers (Chrome, Safari) */
-.tableContainer::-webkit-scrollbar {
+.tableHead {
+    font-weight: 400;
+}
+
+.tableBodyContainer::-webkit-scrollbar {
     width: 3px;
 }
 
-.tableContainer::-webkit-scrollbar-thumb {
+.tableBodyContainer::-webkit-scrollbar-thumb {
     background-color: grey;
 }
 
 .tableHead {
     padding-bottom: 5px;
-    width: 50%;
+}
+
+.tableBodyContainer {
+    overflow-y: auto;
 }
 
 .tableRowContainer {
-    text-align: center;
     display: flex;
-    /* border: 1px solid green; */
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid grey;
+    border-bottom-width: 50%;
+    padding: 0px 10px;
+}
+
+.tableRowContainer:hover {
+    background-color: rgba(128, 128, 128, 0.5);
 }
 
 .tableData {
-    width: 50%;
-    margin-bottom: 10px;
+    font-weight: 600;
 }

@@ -98,6 +98,7 @@ const PageEditor = ({ params }) => {
                                 name="title"
                                 value={title}
                                 onChange={handleInputChange}
+                                required
                             />
                         </div>
                         <div className={styles.inputFormGroup}>
@@ -108,6 +109,7 @@ const PageEditor = ({ params }) => {
                                 name="description"
                                 value={description}
                                 onChange={handleInputChange}
+                                required
                             />
                         </div>
                     </div>
@@ -144,6 +146,7 @@ const PageEditor = ({ params }) => {
                                     name="image"
                                     checked={components.image}
                                     readOnly
+                                    placeholder="Paste an image URL"
                                 />
                                 <label htmlFor="image">Image</label>
                                 <input

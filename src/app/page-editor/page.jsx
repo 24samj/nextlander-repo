@@ -80,6 +80,7 @@ const PageEditor = () => {
                                 name="title"
                                 value={title}
                                 onChange={handleInputChange}
+                                required
                             />
                         </div>
                         <div className={styles.inputFormGroup}>
@@ -90,6 +91,7 @@ const PageEditor = () => {
                                 name="description"
                                 value={description}
                                 onChange={handleInputChange}
+                                required
                             />
                         </div>
                     </div>
@@ -134,7 +136,7 @@ const PageEditor = () => {
                                     name="image"
                                     value={components.image}
                                     onChange={handleImageUrlChange}
-                                    placeholder="Paste an image URL address"
+                                    placeholder="Paste an image URL"
                                 />
                             </div>
                             <div>

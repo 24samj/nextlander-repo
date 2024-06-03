@@ -5,9 +5,16 @@ import { useRouter } from "next/navigation"; // Use useRouter for navigation
 import styles from "./dashboard.module.css";
 import { currentUser, handleAnalytics, pb } from "@/services/pocketbase";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
+import { IoPersonSharp } from "react-icons/io5";
 import useAuth from "@/hooks/useAuth";
 
-const LandingPageCard = ({ landingPageDetails, id, fetchLandingPages }) => {
+const LandingPageCard = ({
+    landingPageDetails,
+    id,
+    linkedUser,
+    fetchLandingPages,
+}) => {
+    console.log("linked user:", linkedUser, "currUser: ", currentUser);
     const router = useRouter(); // Initialize the router
 
     const handleLandingPageClick = async (event) => {
@@ -16,10 +23,10 @@ const LandingPageCard = ({ landingPageDetails, id, fetchLandingPages }) => {
 
         const updatedLandingPageDetails = {
             ...landingPageDetails,
-            views: landingPageDetails.views + 1,
+            views: (landingPageDetails.views || 0) + 1,
         };
         const data = {
-            user: currentUser.id,
+            // user: currentUser.id,
             data: { ...updatedLandingPageDetails },
         };
         await pb.collection("landingPages").update(id, data);
@@ -49,45 +56,57 @@ const LandingPageCard = ({ landingPageDetails, id, fetchLandingPages }) => {
     };
 
     return (
-        <div
-            className={styles.landingPageCardContainer}
-            onClick={handleLandingPageClick}
-            analyticstitle={`Landing_page_${id}`}>
-            {landingPageDetails.components.header && (
-                <div className={styles.landingPageCardHeader}>
-                    {landingPageDetails.title}
-                </div>
-            )}
-            <div className={styles.landingPageCardBodyContainer}>
-                {landingPageDetails.components.text && (
-                    <div className={styles.landingPageCardText}>
-                        {landingPageDetails.description}
+        <div className={styles.landingPageDisplayContainer}>
+            <div
+                className={styles.landingPageCardContainer}
+                onClick={handleLandingPageClick}
+                analyticstitle={`Landing_page_${id}`}>
+                {landingPageDetails.components.header && (
+                    <div className={styles.landingPageCardHeader}>
+                        {landingPageDetails.title}
                     </div>
                 )}
-                {landingPageDetails.components.image && (
-                    <div className={styles.landingPageCardImageContainer}>
-                        <img
-                            className={styles.landingPageCardImage}
-                            src={landingPageDetails.components.image}
-                            alt=""
+                <div className={styles.landingPageCardBodyContainer}>
+                    {landingPageDetails.components.text && (
+                        <div className={styles.landingPageCardText}>
+                            {landingPageDetails.description}
+                        </div>
+                    )}
+                    {landingPageDetails.components.image && (
+                        <div className={styles.landingPageCardImageContainer}>
+                            <img
+                                className={styles.landingPageCardImage}
+                                src={landingPageDetails.components.image}
+                                alt=""
+                            />
+                        </div>
+                    )}
+                </div>
+                {landingPageDetails.components.footer && (
+                    <div className={styles.landingPageCardFooter}>Footer</div>
+                )}
+                {linkedUser.id === currentUser.id && (
+                    <div className={styles.controlsOverlay}>
+                        <AiFillEdit
+                            color="white"
+                            size={20}
+                            onClick={handleEdit}
+                            analyticstitle={`Edit_Button_${id}`}
+                        />
+                        <AiFillDelete
+                            color="white"
+                            size={20}
+                            onClick={handleDelete}
+                            analyticstitle={`Delete_Button_${id}`}
                         />
                     </div>
                 )}
             </div>
-            {landingPageDetails.components.footer && (
-                <div className={styles.landingPageCardFooter}>Footer</div>
-            )}
-            <div className={styles.controlsOverlay}>
-                <AiFillEdit
-                    size={20}
-                    onClick={handleEdit}
-                    analyticstitle={`Edit_Button_${id}`}
-                />
-                <AiFillDelete
-                    size={20}
-                    onClick={handleDelete}
-                    analyticstitle={`Delete_Button_${id}`}
-                />
+            <div className={styles.landingPageDisplayFooter}>
+                <h4>{id}</h4>
+                <h4>
+                    <IoPersonSharp /> {linkedUser.username}
+                </h4>
             </div>
         </div>
     );
@@ -104,7 +123,10 @@ const Dashboard = () => {
             setPagesLoading(true);
             const records = await pb.collection("landingPages").getFullList({
                 sort: "-created",
+                expand: "user",
             });
+            console.log("currUser: ", currentUser);
+            console.log("user is: ", records);
             setLandingPages(records);
         } catch (error) {
             console.error("Error fetching landing pages: ", error);
@@ -138,9 +160,11 @@ const Dashboard = () => {
             <div className={styles.dashboardNavbarContainer}>
                 <h1>NextLander</h1>
                 <div className={styles.navbarButtonsContainer}>
-                    {/* {currentUser?.username && (
-                        <h4>Hello {currentUser?.username}</h4>
-                    )} */}
+                    {currentUser?.username && (
+                        <h4 style={{ marginRight: "10px" }}>
+                            Welcome, {currentUser?.username}
+                        </h4>
+                    )}
                     <button
                         className={styles.addPageButton}
                         onClick={handleAddPageClick}
@@ -172,6 +196,7 @@ const Dashboard = () => {
                                 key={index}
                                 landingPageDetails={landingPage.data}
                                 id={landingPage.id}
+                                linkedUser={landingPage.expand.user[0]}
                                 fetchLandingPages={fetchLandingPages}
                             />
                         ))}
@@ -194,7 +219,7 @@ const Dashboard = () => {
                                 <td className={styles.tableData}>Loading...</td>
                             </tr>
                         ) : landingPages.length > 0 ? (
-                            landingPages.map((landingPage) => (
+                            landingPages.map((landingPage, index) => (
                                 <tr
                                     className={styles.tableRowContainer}
                                     key={landingPage.id}>
