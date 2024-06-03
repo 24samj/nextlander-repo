@@ -1,0 +1,178 @@
+.dashboardContainer {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboardNavbarContainer {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px;
+    /* background-color: red; */
+}
+
+.navbarButtonsContainer {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.dashboardDataContainer {
+    height: 60%;
+    display: flex;
+    /* justify-content: center; */
+    gap: 25px;
+    padding: 25px;
+}
+
+.landingPageCardContainer {
+    height: 100px;
+    width: 200px;
+    border: 2px solid grey;
+    border-radius: 15px;
+    overflow: hidden;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 5px;
+    position: relative;
+    background: slateblue;
+}
+.landingPageCardContainer .controlsOverlay {
+    padding: 0;
+}
+/* .landingPageCardContainer > div:nth-last-of-type() {
+    padding: 0;
+} */
+
+.landingPageCardHeader {
+    font-size: 12px;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid grey;
+}
+
+.landingPageCardBodyContainer {
+    height: 60%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.landingPageCardText {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-size: 8px;
+}
+
+.landingPageCardImageContainer {
+    height: 100%;
+    width: 50%;
+}
+
+.landingPageCardImage {
+    height: 100%;
+    width: 100%;
+}
+
+.landingPageCardFooter {
+    border-top: 1px solid gray;
+    height: 20%;
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addPageButton,
+.logoutButton {
+    height: max-content;
+    padding: 10px 25px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 255, 0.5);
+    border: none;
+    font-weight: 500;
+}
+
+.addPageButton:hover {
+    background-color: rgba(0, 0, 255, 1);
+}
+
+.controlsOverlay {
+    position: absolute;
+    height: 30%;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    bottom: -30%;
+    left: 0;
+    background: linear-gradient(to top, black, rgba(0, 0, 0, 0));
+}
+
+.landingPageCardContainer:hover .controlsOverlay {
+    bottom: 0;
+}
+
+.controlsOverlay > *:hover {
+    scale: 1.1;
+}
+.dashboardAnalyticsContainer {
+    height: 30%;
+    width: 100%;
+    /* border-top: 3px solid grey; */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: hidden;
+    gap: 10px;
+}
+
+.tableContainer {
+    max-height: 80%;
+    width: 50%;
+    border: 1px solid grey;
+
+    border-radius: 10px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hide scrollbar for Webkit browsers (Chrome, Safari) */
+.tableContainer::-webkit-scrollbar {
+    width: 3px;
+}
+
+.tableContainer::-webkit-scrollbar-thumb {
+    background-color: grey;
+}
+
+.tableHead {
+    padding-bottom: 5px;
+    width: 50%;
+}
+
+.tableRowContainer {
+    text-align: center;
+    display: flex;
+    /* border: 1px solid green; */
+}
+
+.tableData {
+    width: 50%;
+    margin-bottom: 10px;
+}

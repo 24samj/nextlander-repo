@@ -1,0 +1,97 @@
+.loginPageContainer {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginFormContainer {
+    text-align: right;
+    padding: 25px;
+    background: radial-gradient(
+        farthest-corner at 0% 0%,
+        black 50%,
+        rgba(128, 128, 128, 0.5)
+    );
+    position: relative;
+    border-radius: 25px;
+    width: 400px;
+}
+
+.loginFormContainer::before {
+    content: "";
+    position: absolute;
+    top: -1px; /* Adjust based on the border thickness */
+    left: -1px; /* Adjust based on the border thickness */
+    right: -1px; /* Adjust based on the border thickness */
+    bottom: -1px; /* Adjust based on the border thickness */
+    border-radius: inherit;
+    background: radial-gradient(
+        farthest-corner at 100% 100%,
+        black 50%,
+        rgba(128, 128, 128, 0.5)
+    );
+    z-index: -1;
+    mask: padding-box;
+    -webkit-mask: padding-box;
+}
+
+.loginFormContainer > h1 {
+    margin-bottom: 25px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.formInputGroup {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.formInput {
+    height: 25px;
+    border: 0.5px solid rgba(128, 128, 128, 0.5);
+    border-radius: 5px;
+}
+
+.submitButton {
+    /* height: 25px; */
+    border: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    background-color: rgba(0, 0, 255, 0.5);
+    font-size: 16px;
+    font-weight: 700;
+    margin: 25px 0px;
+}
+
+.cancelButton {
+    background-color: red;
+}
+
+.submitButton:hover {
+    background-color: blue;
+}
+
+.signUpText > b {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.errorText {
+    color: red;
+    font-size: 12px;
+}
+
+.buttonsContainer {
+    display: flex;
+    gap: 100px;
+}
