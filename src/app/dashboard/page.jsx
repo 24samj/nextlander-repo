@@ -7,6 +7,10 @@ import { currentUser, handleAnalytics, pb } from "@/services/pocketbase";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { IoPersonSharp } from "react-icons/io5";
 import useAuth from "@/hooks/useAuth";
+import { FaFacebook } from "react-icons/fa";
+import { TiSocialInstagramCircular } from "react-icons/ti";
+import { AiFillTwitterCircle } from "react-icons/ai";
+import { SiYoutubemusic } from "react-icons/si";
 
 const LandingPageCard = ({
     landingPageDetails,
@@ -83,7 +87,12 @@ const LandingPageCard = ({
                     )}
                 </div>
                 {landingPageDetails.components.footer && (
-                    <div className={styles.landingPageCardFooter}>Footer</div>
+                    <div className={styles.landingPageCardFooter}>
+                        <FaFacebook size={12} />
+                        <TiSocialInstagramCircular size={16} />
+                        <AiFillTwitterCircle size={14} />
+                        <SiYoutubemusic size={12} />
+                    </div>
                 )}
                 {linkedUser.id === currentUser.id && (
                     <div className={styles.controlsOverlay}>

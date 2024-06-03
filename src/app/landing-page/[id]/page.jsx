@@ -4,6 +4,10 @@ import { pb } from "@/services/pocketbase";
 import styles from "./[id].module.css";
 import { useEffect, useState } from "react";
 import useAuth from "@/hooks/useAuth";
+import { FaFacebook } from "react-icons/fa";
+import { TiSocialInstagramCircular } from "react-icons/ti";
+import { AiFillTwitterCircle } from "react-icons/ai";
+import { SiYoutubemusic } from "react-icons/si";
 
 const LandingPage = ({ params }) => {
     useAuth();
@@ -54,7 +58,12 @@ const LandingPage = ({ params }) => {
                 )}
             </div>
             {landingPageDetails?.components?.footer && (
-                <div className={styles.landingPageFooter}>Footer</div>
+                <div className={styles.landingPageFooter}>
+                    <FaFacebook size={48} />
+                    <TiSocialInstagramCircular size={64} />
+                    <AiFillTwitterCircle size={56} />
+                    <SiYoutubemusic size={48} />
+                </div>
             )}
         </div>
     );
